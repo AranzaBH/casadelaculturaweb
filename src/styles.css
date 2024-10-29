@@ -48,3 +48,9 @@ body {
 .ml70{
   margin-left: 70px !important;
 }
+
+.custom-button {
+  background-color: #8E418D !important;
+  color: white; /* Cambia el color del texto si es necesario */
+}
+

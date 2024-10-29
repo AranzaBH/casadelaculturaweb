@@ -1,3 +1,4 @@
+/*
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -7,4 +8,4 @@ export const routes: Routes = [
     {
         path:'crearUsuario', loadComponent: () => import('./usuario-form/usuario-form.component')
     }
-];
+];*/
