@@ -30,7 +30,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { NgxUiLoaderModule , NgxUiLoaderHttpModule } from "ngx-ui-loader";
-
+import {  YouTubePlayerModule } from '@angular/youtube-player';
 
 
 @NgModule({
@@ -64,8 +64,8 @@ import { NgxUiLoaderModule , NgxUiLoaderHttpModule } from "ngx-ui-loader";
     MatSelectModule,
     MatProgressSpinnerModule,
     NgxUiLoaderModule,
-    NgxUiLoaderHttpModule.forRoot({showForeground:true})
-    
+    NgxUiLoaderHttpModule.forRoot({showForeground:true}),
+    YouTubePlayerModule
     
     
   ],
