@@ -11,12 +11,12 @@ export class TallerService {
 
   // Ejemplo de método para obtener todos los talleres
   public obtenerTalleres(){
-    return this.httpClient.get(`${baserUrl}/api/taller`);
+    return this.httpClient.get(`${baserUrl}/taller`);
   }
 
   // Ejemplo de método para añadir un taller
   public añadirTaller(taller: any) {
-    return this.httpClient.post(`${baserUrl}/api/taller`, taller);
+    return this.httpClient.post(`${baserUrl}/taller`, taller);
   }
   
     

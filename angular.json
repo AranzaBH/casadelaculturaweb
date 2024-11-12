@@ -105,5 +105,8 @@
       }
     }
   },
-  "defaultProject": "sistema-examenes-frontend"
+  "defaultProject": "sistema-examenes-frontend",
+  "cli": {
+    "analytics": "68e38d4b-7e71-4925-a23d-49eee5ee6013"
+  }
 }

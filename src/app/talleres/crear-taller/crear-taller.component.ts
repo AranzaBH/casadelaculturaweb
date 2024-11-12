@@ -10,12 +10,14 @@ import  Swal  from 'sweetalert2';
 })
 export class CrearTallerComponent implements OnInit {
   public taller = {
-    nombre: '',
+    tituloTaller: '',
     descripcion: '',
-    fecha: '',
-    duracion: '',
-    instructor: ''
+    fechaInico: '',
+    fechaFinal: '',
+    instructor: '',
+    duracion: ''
   };
+
 
   constructor(private tallerService: TallerService, private snack: MatSnackBar) {}
 
