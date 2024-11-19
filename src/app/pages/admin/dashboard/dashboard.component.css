@@ -1,0 +1,55 @@
+.card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .card-footer {
+    padding: 0;
+  }
+  
+  .btn-block {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+  .responsive-image {
+    width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: auto; /* Mantiene la relación de aspecto */
+  }
+  /* Resetear margenes y paddings para consistencia */
+.btn-custom {
+  display: inline-block; /* Ambos elementos tendrán el mismo comportamiento de caja */
+  width: 200px; /* Ancho fijo */
+  height: 50px; /* Alto fijo */
+  font-size: 16px; /* Tamaño del texto */
+  text-align: center; /* Centrar texto */
+  padding: 0; /* Quitar padding */
+  margin: 0; /* Quitar márgenes */
+  border-radius: 8px; /* Bordes redondeados */
+  line-height: 50px; /* Centrar texto verticalmente */
+  text-decoration: none; /* Quitar subrayado en <a> */
+  vertical-align: middle; /* Alinear verticalmente */
+}
+
+/* Botón personalizado con el color #9D2449 */
+.custom-button {
+  background-color: #9D2449; /* Color principal */
+  color: white; /* Color de texto blanco */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.custom-button:hover {
+  background-color: #7e1b3e; /* Un color ligeramente más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Efecto de expansión */
+}
+
+.custom-button:active {
+  background-color: #651b35; /* Color aún más oscuro cuando se hace clic */
+  transform: scale(0.95); /* Efecto de compresión */
+}

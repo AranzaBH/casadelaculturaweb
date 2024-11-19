@@ -1,0 +1,49 @@
+<div class="bootstrap-wrapper">
+  <div class="container" style="margin-top: 0px;">
+    <div class="row" style="margin-top: 0px;">
+      <div class="col-md-6 offset-md-3">
+        <!-- Título -->
+        <h3 class="text-center mb-4">Crear Tipo Taller</h3>
+  <!-- Formulario para crear un nuevo tipo de taller -->
+  <form (ngSubmit)="agregarTipoTaller()">
+    <div class="form-group">
+      <label for="nombre">Nombre del Taller</label>
+      <input
+        type="text"
+        id="nombre"
+        [(ngModel)]="newTipoTaller.nombreTipoTaller"
+        name="nombre"
+        class="form-control"
+        placeholder="Ingrese el nombre del taller"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción del Taller</label>
+      <input
+        type="text"
+        id="descripcion"
+        [(ngModel)]="newTipoTaller.descripcion"
+        name="descripcion"
+        class="form-control"
+        placeholder="Ingrese una descripción"
+        required
+      />
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <!-- Botón Primario -->
+      <button type="submit" class="btn btn-primary btn-custom">
+        Crear Tipo de Taller
+      </button>
+    
+      <!-- Botón que redirige -->
+      <a href="/admin/crearT/taller" class="custom-button btn-custom">
+        Ir a Crear Taller
+      </a>
+    </div>
+
+
+  </form>
+</div>

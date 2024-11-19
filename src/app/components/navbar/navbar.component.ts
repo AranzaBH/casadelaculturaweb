@@ -1,5 +1,5 @@
-import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from './../../services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,27 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-
   isLoggedIn = false;
-  user:any = null;
+  user: any = null;
+  userRole: string = '';  // Para almacenar el rol del usuario
 
-  constructor(public login:LoginService) { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.login.isLoggedIn();
-    this.user = this.login.getUser();
-    this.login.loginStatusSubjec.asObservable().subscribe(
+    this.isLoggedIn = this.loginService.isLoggedIn();
+    this.user = this.loginService.getUser();
+    if (this.isLoggedIn) {
+      this.userRole = this.loginService.getUserRole();  // Obtener el rol del usuario
+    }
+    
+    this.loginService.loginStatusSubjec.asObservable().subscribe(
       data => {
-        this.isLoggedIn = this.login.isLoggedIn();
-        this.user = this.login.getUser();
+        this.isLoggedIn = this.loginService.isLoggedIn();
+        this.user = this.loginService.getUser();
+        if (this.isLoggedIn) {
+          this.userRole = this.loginService.getUserRole();  // Obtener el rol cuando se actualice el estado de login
+        }
       }
-    )
+    );
   }
 
-  public logout(){
-    this.login.logout();
+  public logout() {
+    this.loginService.logout();
     window.location.reload();
   }
 
 }
-

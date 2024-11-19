@@ -8,45 +8,74 @@ import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { CrearTallerComponent } from './talleres/crear-taller/crear-taller.component';
+import { TallerComponent } from './talleres/taller/taller.component';
 
 const routes: Routes = [
   {
-    path : '',
-    component : HomeComponent,
-    pathMatch : 'full'
+    path: '',
+    component: HomeComponent,
+    pathMatch: 'full'
   },
   {
-    path : 'signup',
-    component : SignupComponent,
-    pathMatch : 'full'
+    path: 'signup',
+    component: SignupComponent,
+    pathMatch: 'full'
   },
   {
-    path : 'login',
-    component : LoginComponent,
-    pathMatch : 'full'
+    path: 'login',
+    component: LoginComponent,
+    pathMatch: 'full'
   },
   {
-    path:'admin',
-    component:DashboardComponent,
-    pathMatch:'full',
-    canActivate:[AdminGuard]
+    path: 'admin/dash',
+    component: DashboardComponent,
+    pathMatch: 'full',
+    canActivate: [AdminGuard],
+    children: [
+      {
+        path: 'profile',
+        component: ProfileComponent
+      }
+    ]
   },
   {
-    path:'user-dashboard',
-    component:UserDashboardComponent,
-    pathMatch:'full',
-    canActivate:[NormalGuard]
+    path: 'user-dashboard',
+    component: UserDashboardComponent,
+    pathMatch: 'full',
+    canActivate: [NormalGuard]
+    
   },
   {
-    path:'admin',
-    component:DashboardComponent,
-    canActivate:[AdminGuard],
-    children:[{
-      path:'profile',
-      component:ProfileComponent
-    }]
+    path: 'admin/profile',
+    component: ProfileComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [NormalGuard]
+  },
+    
+  {
+    path: 'admin/crearT', // Nueva ruta para el componente de talleres
+    component: CrearTallerComponent,
+    canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
+  
+  },
+  {
+    path: 'admin/crearT', // Nueva ruta para el componente de tipo de talleres
+    component: TallerComponent,
+    canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
+  
+  },
+  {
+    path: 'admin/crearT/taller', // Nueva ruta para el componente de talleres
+    component: TallerComponent,
+    canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
+  
   }
-
+  
 ];
 
 @NgModule({

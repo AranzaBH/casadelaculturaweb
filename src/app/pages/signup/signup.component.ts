@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   }
 
   constructor(private userService:UserService,private snack:MatSnackBar) { }
-
+ 
   ngOnInit(): void {
   }
 
@@ -41,12 +41,11 @@ export class SignupComponent implements OnInit {
         Swal.fire('Usuario guardado','Usuario registrado con exito en el sistema','success');
       },(error) => {
         console.log(error);
-        this.snack.open('Ha ocurrido un error en el sistema !!','Aceptar',{
-          duration : 3000
+         Swal.fire('Ha ocurrido un error en el sistema !!','');
+          
         });
       }
-    )
+    
   }
 
-}
 

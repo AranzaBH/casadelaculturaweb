@@ -7,8 +7,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule, ReactiveFormsModule],
   templateUrl: './usuario-form.component.html',
-  styleUrl: './usuario-form.component.css'
-})
+  })
 export default class UsuarioFormComponent {
   private fb = inject(FormBuilder);
   form = this.fb.group({

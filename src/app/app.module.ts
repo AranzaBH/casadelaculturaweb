@@ -10,28 +10,27 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 
+import { MatCardModule } from '@angular/material/card'; // Importamos el módulo de MatCard
+
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HomeComponent } from './pages/home/home.component';
-import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { authInterceptorProviders } from './services/auth.interceptor';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
-import { MatListModule } from '@angular/material/list';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatSelectModule } from '@angular/material/select';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
+import { MatListModule } from '@angular/material/list'; // Importar MatListModule
+import { ProfileComponent } from './pages/profile/profile.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
-import { NgxUiLoaderModule , NgxUiLoaderHttpModule } from "ngx-ui-loader";
-import {  YouTubePlayerModule } from '@angular/youtube-player';
-
+import { AuthService } from './services/auth/auth.service';  // Asegúrate de que la ruta sea correcta
+import { CrearTallerComponent } from './talleres/crear-taller/crear-taller.component';
+import { TallerComponent } from './talleres/taller/taller.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,9 +41,12 @@ import {  YouTubePlayerModule } from '@angular/youtube-player';
     HomeComponent,
     DashboardComponent,
     UserDashboardComponent,
-    ProfileComponent,
     SidebarComponent,
-    WelcomeComponent
+    ProfileComponent,
+    WelcomeComponent,
+   
+    CrearTallerComponent,
+    TallerComponent
   ],
   imports: [
     BrowserModule,
@@ -60,16 +62,10 @@ import {  YouTubePlayerModule } from '@angular/youtube-player';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    MatSlideToggleModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    NgxUiLoaderModule,
-    NgxUiLoaderHttpModule.forRoot({showForeground:true}),
-    YouTubePlayerModule
-    
-    
+    ReactiveFormsModule   
   ],
-  providers: [authInterceptorProviders],
-  bootstrap: [AppComponent]
+  providers: [authInterceptorProviders, AuthService],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

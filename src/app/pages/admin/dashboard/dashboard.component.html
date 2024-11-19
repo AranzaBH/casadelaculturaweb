@@ -1,14 +1,36 @@
-<div class = "bootstrap-wrapper">
-    <div class = "container-fluid">
-      <div class = "row">
-        <div class = "col-md-3">
-          <app-sidebar></app-sidebar>
+<div class="container mt-4 d-flex justify-content-center">
+  <div class="row" style="width: 100%; max-width: 500px;">
+    <!-- Card para Crear Talleres -->
+    <div class="col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Crear Talleres</h5>
+
+          <img src='../../../../assets/imagen.png' class="responsive-image" />
+          <p class="card-text">Administra y crea nuevos talleres para la plataforma.</p>
         </div>
-  
-        <div class = "col-md-9">
-          <router-outlet></router-outlet>
+        <div class="card-footer">
+          <a href="/admin/crearT" class="custom-button btn-custom">
+            Ir a Crear Tipo de Taller
+          </a>
         </div>
       </div>
     </div>
-    
+
+    <!-- Card para Crear Usuarios -->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Crear Usuarios</h5>
+          <img src='../../../../assets/imagen.png' class="responsive-image" />
+          <p class="card-text">Agrega y gestiona usuarios para la plataforma.</p>
+        </div>
+        <div class="card-footer">
+          <a href="/admin/crearT" class="custom-button btn-custom">
+            Crear Taller
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

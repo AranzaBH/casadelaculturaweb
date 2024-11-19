@@ -2,74 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Casa de la cultura</title>
+  <title>Casa de la Cultura</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="https://www.youtube.com/iframe_api"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Bootstrap JS y dependencias (coloca al final de tu archivo) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
-<style>
-  .navbar-brand {
-    font-weight: bold;
-}
-.offcanvas-end {
-  background-color: #9D2449; /* Cambia el color de fondo del menú */
-  color: #ffffff;
-}
-.offcanvas-body a {
-  color: #ffffff;
-  font-size: 1.2rem;
-}
-.offcanvas-body a:hover {
-  color: #ffc107; /* Color al pasar el ratón */
-}
-.example-spacer {
-  flex-grow: 1;
-}
-.mr20 {
-  margin-right: 20px;
-}
-.ml70 {
-  margin-left: 70px;
-}
-
-
-</style>
 <body>
-  <nav class="navbar navbar-dark" style="background-color: #9D2449;">
-    <div class="container">
-      <!-- Enlace al inicio -->
-      <a class="navbar-brand" href="/">Casa de la Cultura</a>
-      
-      <!-- Botón hamburguesa para abrir el menú lateral derecho -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </nav>
+  <app-root></app-root> <!-- Aquí se carga tu aplicación Angular -->
   
-  <!-- Menú lateral derecho -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasRightLabel">Menú</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <!-- Enlaces según autenticación -->
-      <a class="nav-link" href="/login">Iniciar sesión</a>
-      <a class="nav-link" href="/signup">Registrar</a>
-      <a class="nav-link" href="/admin/profile">Cerrar sesion</a>
-    </div>
-  </div>
-  
-  <!-- Bootstrap JS y dependencias -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <app-root></app-root>
 </body>
-
 </html>
