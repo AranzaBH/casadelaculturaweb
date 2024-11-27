@@ -1,0 +1,133 @@
+<div class="container">
+    <h2>Gestión de Reactivos</h2>
+  
+    <!-- Formulario para agregar un nuevo reactivo -->
+    <form (ngSubmit)="agregarReactivo()" #reactivoForm="ngForm">
+      <div class="form-group">
+        <label for="pregunta">Pregunta</label>
+        <input
+          type="text"
+          id="pregunta"
+          class="form-control"
+          name="pregunta"
+          [(ngModel)]="nuevoReactivo.pregunta"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="respuestaCorrecta">Respuesta Correcta</label>
+        <input
+          type="text"
+          id="respuestaCorrecta"
+          class="form-control"
+          name="respuestaCorrecta"
+          [(ngModel)]="nuevoReactivo.respuestaCorrecta"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="respuesta1">Respuesta 1</label>
+        <input
+          type="text"
+          id="respuesta1"
+          class="form-control"
+          name="respuesta1"
+          [(ngModel)]="nuevoReactivo.respuesta1"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="respuesta2">Respuesta 2</label>
+        <input
+          type="text"
+          id="respuesta2"
+          class="form-control"
+          name="respuesta2"
+          [(ngModel)]="nuevoReactivo.respuesta2"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="respuesta3">Respuesta 3</label>
+        <input
+          type="text"
+          id="respuesta3"
+          class="form-control"
+          name="respuesta3"
+          [(ngModel)]="nuevoReactivo.respuesta3"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="respuesta4">Respuesta 4 (opcional)</label>
+        <input
+          type="text"
+          id="respuesta4"
+          class="form-control"
+          name="respuesta4"
+          [(ngModel)]="nuevoReactivo.respuesta4"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="respuesta5">Respuesta 5 (opcional)</label>
+        <input
+          type="text"
+          id="respuesta5"
+          class="form-control"
+          name="respuesta5"
+          [(ngModel)]="nuevoReactivo.respuesta5"
+        />
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="reactivoForm.invalid">
+        Guardar Reactivo
+      </button>
+    </form>
+  
+    <hr />
+  
+    <!-- Lista de reactivos existentes -->
+    <div *ngIf="reactivos.length; else noReactivos">
+      <h3>Lista de Reactivos</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Pregunta</th>
+            <th>Respuestas</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reactivo of reactivos; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ reactivo.pregunta }}</td>
+            <td>
+              Correcta: {{ reactivo.respuestaCorrecta }}<br />
+              1: {{ reactivo.respuesta1 }}<br />
+              2: {{ reactivo.respuesta2 }}<br />
+              3: {{ reactivo.respuesta3 }}<br />
+              <span *ngIf="reactivo.respuesta4">4: {{ reactivo.respuesta4 }}</span><br />
+              <span *ngIf="reactivo.respuesta5">5: {{ reactivo.respuesta5 }}</span>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="eliminarReactivo(reactivo.id)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <ng-template #noReactivos>
+      <p>No hay reactivos registrados.</p>
+    </ng-template>
+  </div>
+  

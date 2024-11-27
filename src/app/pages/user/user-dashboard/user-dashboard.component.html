@@ -1,3 +1,34 @@
-<div style="text-align: center;">
-  <p>DASH user</p>
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row mt20">
+      <h3>Talleres Disponibles</h3> 
+
+      <!-- Lista de tarjetas de talleres -->
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let taller of talleres">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ taller.tituloTaller }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                Tipo: {{ taller.tipoTaller?.nombreTipoTaller || 'Sin asignar' }}
+              </h6>
+              <p class="card-text">{{ taller.descripcion }}</p>
+              <p class="card-text">
+                <strong>Inicio:</strong> {{ taller.fechaInico | date: 'mediumDate' }}<br />
+                <strong>Final:</strong> {{ taller.fechaFinal | date: 'mediumDate' }}
+              </p>
+            </div>
+            <div class="card-footer text-center">
+              <div class="card-footer text-center">
+                <a [routerLink]="['/taller', taller.idTaller]" class="btn btn-primary btn-sm">
+                  Ver Detalles
+                </a>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

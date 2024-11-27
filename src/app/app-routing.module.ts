@@ -10,13 +10,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CrearTallerComponent } from './talleres/crear-taller/crear-taller.component';
 import { TallerComponent } from './talleres/taller/taller.component';
+import { TallerDetailsComponent } from './talleres/taller-details/taller-details.component'; // Asegúrate de que tienes este componente
+import { TalleresUserComponent } from './../app/pages/user/talleres-user/talleres-user.component';
+import { ReactivoComponent } from './talleres/actividades/reactivo/reactivo.component';
+import { PreguntasComponent } from './talleres/actividades/preguntas/preguntas.component';
+import { CuestionarioComponent } from './talleres/actividades/cuestionario/cuestionario.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    pathMatch: 'full'
-  },
+  
   {
     path: 'signup',
     component: SignupComponent,
@@ -74,9 +75,37 @@ const routes: Routes = [
     component: TallerComponent,
     canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
   
-  }
+  },
+  //talleres
+  { path: '', component: UserDashboardComponent },
   
-];
+  { path: 'taller/:id', component: TallerDetailsComponent },
+
+  
+  {
+    path: 'inscripcion',
+    component: TalleresUserComponent,
+    canActivate: [NormalGuard]
+  },
+  {
+  path: 'admin/reactivo',
+    component: ReactivoComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin/cuestionario',
+      component: CuestionarioComponent,
+      canActivate: [AdminGuard]
+    },
+    {
+    path: 'admin/preguntas',
+      component: PreguntasComponent,
+      canActivate: [AdminGuard]
+    },
+  ];
+  
+  
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

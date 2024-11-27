@@ -22,8 +22,8 @@
   }
   /* Resetear margenes y paddings para consistencia */
 .btn-custom {
-  display: inline-block; /* Ambos elementos tendrán el mismo comportamiento de caja */
-  width: 200px; /* Ancho fijo */
+  display: inline-block ; /* Ambos elementos tendrán el mismo comportamiento de caja */
+  width: 450px; /* Ancho fijo */
   height: 50px; /* Alto fijo */
   font-size: 16px; /* Tamaño del texto */
   text-align: center; /* Centrar texto */
@@ -51,5 +51,37 @@
 
 .custom-button:active {
   background-color: #651b35; /* Color aún más oscuro cuando se hace clic */
+  transform: scale(0.95); /* Efecto de compresión */
+}
+.card-footer {
+  padding: 0;
+  display: flex; /* Activar Flexbox */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.btn-custom {
+  display: inline-block; /* Comportamiento de caja */
+  width: 450px; /* Ancho fijo */
+  height: 50px; /* Alto fijo */
+  font-size: 16px; /* Tamaño del texto */
+  text-align: center; /* Centrar texto horizontalmente */
+  border-radius: 8px; /* Bordes redondeados */
+  line-height: 50px; /* Centrar texto verticalmente */
+  text-decoration: none; /* Quitar subrayado */
+  background-color: #9D2449; /* Color del botón */
+  color: white; /* Color del texto */
+  border: none; /* Sin bordes */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Efectos */
+}
+
+.btn-custom:hover {
+  background-color: #7e1b3e; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Efecto de expansión */
+}
+
+.btn-custom:active {
+  background-color: #651b35; /* Color más oscuro al hacer clic */
   transform: scale(0.95); /* Efecto de compresión */
 }

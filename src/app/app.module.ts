@@ -31,6 +31,15 @@ import { AuthService } from './services/auth/auth.service';  // Asegúrate de qu
 import { CrearTallerComponent } from './talleres/crear-taller/crear-taller.component';
 import { TallerComponent } from './talleres/taller/taller.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TallerDetailsComponent } from './talleres/taller-details/taller-details.component';
+
+import { InscripcionService } from './services/inscripcion.service';
+import { TalleresUserComponent } from './pages/user/talleres-user/talleres-user.component';
+
+import { ReactivoComponent } from './talleres/actividades/reactivo/reactivo.component';
+import { PreguntasComponent } from './talleres/actividades/preguntas/preguntas.component';
+import { CuestionarioComponent } from './talleres/actividades/cuestionario/cuestionario.component';
+import { VideoComponent } from './talleres/actividades/video/video.component';
 
 @NgModule({
   declarations: [
@@ -43,10 +52,17 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserDashboardComponent,
     SidebarComponent,
     ProfileComponent,
-    WelcomeComponent,
-   
+    WelcomeComponent,   
     CrearTallerComponent,
-    TallerComponent
+    TallerComponent,
+    TallerDetailsComponent,
+    TalleresUserComponent,
+    
+    ReactivoComponent,
+    PreguntasComponent,
+    CuestionarioComponent,
+    VideoComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -64,7 +80,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatListModule,
     ReactiveFormsModule   
   ],
-  providers: [authInterceptorProviders, AuthService],
+  providers: [authInterceptorProviders, AuthService, InscripcionService],
   bootstrap: [AppComponent],
   
 })

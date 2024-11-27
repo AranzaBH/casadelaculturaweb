@@ -1,0 +1,24 @@
+<div class="bootstrap-wrapper">
+  <h3>Detalles del Taller</h3>
+
+  <div *ngIf="taller">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ taller.tituloTaller }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          Tipo: {{ taller.tipoTaller?.nombreTipoTaller }}
+        </h6>
+        <p class="card-text">{{ taller.descripcion }}</p>
+        <p class="card-text">
+          <strong>Inicio:</strong> {{ taller.fechaInico | date: 'mediumDate' }}<br />
+          <strong>Final:</strong> {{ taller.fechaFinal | date: 'mediumDate' }}
+        </p>
+      </div>
+      <!-- Botones en el pie de la tarjeta -->
+      <div class="card-footer text-center">
+        <button class="btn btn-secondary" (click)="regresar()">Regresar</button>
+        <button class="btn btn-primary" (click)="inscribirse()">Inscribirse</button>
+      </div>
+    </div>
+  </div>
+</div>

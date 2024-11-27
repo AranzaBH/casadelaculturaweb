@@ -1,0 +1,45 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Talleres Inscritos</h2>
+  
+    <div class="row">
+      <!-- Verifica si hay talleres inscritos -->
+      <div *ngIf="talleres.length === 0" class="col-12 text-center">
+        <p>No hay talleres inscritos aún.</p>
+      </div>
+  
+      <!-- Mostrar cada taller en una tarjeta -->
+      <div class="col-md-4" *ngFor="let taller of talleres">
+        <div class="card mb-4 shadow-sm">
+          <!-- Imagen del taller -->
+          <img
+            class="card-img-top"
+            [src]="taller.imagenPath || 'https://via.placeholder.com/150'"
+            [alt]="taller.nombre"
+          />
+          <div class="card-body">
+            <!-- Información del taller -->
+            <h5 class="card-title">{{ taller.nombre }}</h5>
+            <p class="card-text">
+              {{ taller.descripcion }}
+            </p>
+            <p class="text-muted">
+              <strong>Inicio:</strong> {{ taller.fechaInicio | date }}
+              <br />
+              <strong>Fin:</strong> {{ taller.fechaFinal | date }}
+            </p>
+            <!-- Estado -->
+            <span
+              class="badge"
+              [ngClass]="{
+                'badge-success': taller.estaActivo,
+                'badge-secondary': !taller.estaActivo
+              }"
+            >
+              {{ taller.estaActivo ? 'Activo' : 'Inactivo' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

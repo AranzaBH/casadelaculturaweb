@@ -27,11 +27,15 @@
       <a *ngIf="isLoggedIn && userRole === 'NORMAL'" class="nav-link" href="/profile">Mi Perfil</a>
       <a *ngIf="isLoggedIn && userRole === 'NORMAL'" class="nav-link" href="/talleres">Talleres</a>
       <a *ngIf="isLoggedIn && userRole === 'NORMAL'" class="nav-link" href="/user-dashboard">Inicio</a>
+      <a *ngIf="isLoggedIn && userRole === 'NORMAL'" class="nav-link" href="/inscripcion">Inscripciones</a>
 
       <!-- Mostrar enlaces para administradores -->
       <a *ngIf="isLoggedIn && userRole === 'ADMIN'" class="nav-link" href="/admin/profile">Mi Perfil</a>
       <a *ngIf="isLoggedIn && userRole === 'ADMIN'" class="nav-link" href="/admin/dash">Principal</a>
       <a *ngIf="isLoggedIn && userRole === 'ADMIN'" class="nav-link" href="/admin/crearT">Crear Talleres</a>
+      <a *ngIf="isLoggedIn && userRole === 'ADMIN'" class="nav-link" href="/admin/reactivo">Crear Reactivos</a>
+      <a *ngIf="isLoggedIn && userRole === 'ADMIN'" class="nav-link" href="/admin/preguntas">Crear Preguntas</a>
+      <a *ngIf="isLoggedIn && userRole === 'ADMIN'" class="nav-link" href="/admin/cuestionario">Crear cuestionario</a>
 
       <!-- Enlace de logout -->
       <a *ngIf="isLoggedIn" (click)="logout()" class="nav-link">Cerrar sesión</a>
