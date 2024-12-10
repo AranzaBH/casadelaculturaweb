@@ -1,1 +1,66 @@
-<p>crear-actividad works!</p>
+<div class="container">
+    <h2>Crear Actividad</h2>
+    <form [formGroup]="actividadForm" (ngSubmit)="crearActividad()">
+      <div class="form-group">
+        <label for="nombreActividad">Nombre de la Actividad</label>
+        <input
+          id="nombreActividad"
+          type="text"
+          formControlName="nombreActividad"
+          class="form-control"
+          placeholder="Ingrese el nombre de la actividad"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="idTaller">Taller</label>
+        <select id="idTaller" formControlName="idTaller" class="form-control">
+          <option *ngFor="let taller of talleres" [value]="taller.idTaller">
+            {{ taller.tituloTaller }}
+          </option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="idCuestionario">Cuestionario</label>
+        <select
+          id="idCuestionario"
+          formControlName="idCuestionario"
+          class="form-control"
+        >
+          <option *ngFor="let cuestionario of cuestionarios" [value]="cuestionario.idCuestionario">
+            {{ cuestionario.nombreCuestionario }}
+          </option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="idVideo">Video</label>
+        <select id="idVideo" formControlName="idVideo" class="form-control">
+          <option *ngFor="let video of videos" [value]="video.idVideo">
+            {{ video.titulo }}
+          </option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="modulo">Módulo</label>
+        <input id="modulo" type="number" formControlName="modulo" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="avance">Avance</label>
+        <input id="avance" type="number" formControlName="avance" class="form-control" />
+      </div>
+  
+      <div class="form-check">
+        <input id="estatus" type="checkbox" formControlName="estatus" class="form-check-input" />
+        <label for="estatus" class="form-check-label">Estatus</label>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!actividadForm.valid">
+        Crear Actividad
+      </button>
+    </form>
+  </div>
+  

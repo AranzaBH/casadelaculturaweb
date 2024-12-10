@@ -85,6 +85,6 @@ export class TallerDetailsComponent implements OnInit {
   }
 
   regresar(): void {
-    this.router.navigate(['/talleres']); // Cambiar la ruta según tu aplicación
+    this.router.navigate(['/Inicio']); // Cambiar la ruta según tu aplicación
   }
 }

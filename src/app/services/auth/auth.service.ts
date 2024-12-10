@@ -43,4 +43,10 @@ export class AuthService {
     this.currentUser = null;
     this.loggedIn.next(false);  // Cambiar el estado a 'no logueado'
   }
+  
+  obtenerUsuarioId(): number {
+    // Si usas JWT, el ID de usuario podría estar en el token. Aquí solo es un ejemplo.
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+    return usuario.id || 0; // Retorna el ID del usuario, si está disponible
+  }
 }

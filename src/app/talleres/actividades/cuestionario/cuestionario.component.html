@@ -1,54 +1,121 @@
-<div class="container">
-    <h2>Gestión de Cuestionarios</h2>
-  
-    <!-- Formulario para agregar un nuevo cuestionario -->
-    <form (ngSubmit)="agregarCuestionario()" #cuestionarioForm="ngForm">
-      <div class="form-group">
-        <label for="calificacion">Calificación</label>
-        <input
-          type="text"
-          id="calificacion"
-          class="form-control"
-          name="calificacion"
-          [(ngModel)]="nuevoCuestionario.calificacion"
-          required
-        />
-      </div>
-  
-      <button type="submit" class="btn btn-primary" [disabled]="cuestionarioForm.invalid">
-        Guardar Cuestionario
-      </button>
-    </form>
-  
-    <hr />
-  
-    <!-- Lista de cuestionarios -->
-    <div *ngIf="cuestionarios.length; else noCuestionarios">
-      <h3>Lista de Cuestionarios</h3>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Calificación</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let cuestionario of cuestionarios; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ cuestionario.calificacion }}</td>
-            <td>
-              <button class="btn btn-danger btn-sm" (click)="eliminarCuestionario(cuestionario.idCuestionario)">
-                Eliminar
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <ng-template #noCuestionarios>
-      <p>No hay cuestionarios registrados.</p>
-    </ng-template>
+<div class="cuestionario-form">
+  <h2>Crear Cuestionario</h2>
+
+  <!-- Formulario del Cuestionario -->
+  <div class="form-group">
+    <label for="nombreCuestionario">Nombre del Cuestionario:</label>
+    <input
+      id="nombreCuestionario"
+      type="text"
+      class="form-control"
+      [(ngModel)]="cuestionario.nombreCuestionario"
+      placeholder="Introduce el nombre del cuestionario"
+    />
   </div>
-  
+
+  <div class="form-group">
+    <label for="instrucciones">Instrucciones:</label>
+    <textarea
+      id="instrucciones"
+      class="form-control"
+      [(ngModel)]="cuestionario.instrucciones"
+      placeholder="Introduce las instrucciones"
+    ></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="calificacion">Calificación:</label>
+    <input
+      id="calificacion"
+      type="number"
+      class="form-control"
+      [(ngModel)]="cuestionario.calificacion"
+      placeholder="Introduce la calificación máxima"
+    />
+  </div>
+
+  <hr />
+
+  <!-- Formulario para agregar reactivos -->
+  <h3>Agregar Reactivos</h3>
+  <div class="form-group">
+    <label for="pregunta">Pregunta:</label>
+    <input
+      id="pregunta"
+      type="text"
+      class="form-control"
+      [(ngModel)]="nuevoReactivo.pregunta"
+      placeholder="Introduce la pregunta"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="respuestaCorrecta">Respuesta Correcta:</label>
+    <input
+      id="respuestaCorrecta"
+      type="text"
+      class="form-control"
+      [(ngModel)]="nuevoReactivo.respuestaCorrecta"
+      placeholder="Introduce la respuesta correcta"
+    />
+  </div>
+
+  <div class="form-group">
+    <label>Opciones Incorrectas:</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="nuevoReactivo.respuesta1"
+      placeholder="Opción 1"
+    />
+    <input
+      type="text"
+      class="form-control mt-2"
+      [(ngModel)]="nuevoReactivo.respuesta2"
+      placeholder="Opción 2"
+    />
+    <input
+      type="text"
+      class="form-control mt-2"
+      [(ngModel)]="nuevoReactivo.respuesta3"
+      placeholder="Opción 3"
+    />
+    <input
+      type="text"
+      class="form-control mt-2"
+      [(ngModel)]="nuevoReactivo.respuesta4"
+      placeholder="Opción 4 (opcional)"
+    />
+    <input
+      type="text"
+      class="form-control mt-2"
+      [(ngModel)]="nuevoReactivo.respuesta5"
+      placeholder="Opción 5 (opcional)"
+    />
+  </div>
+
+  <button class="btn btn-primary mt-3" (click)="preagregarReactivo()">Agregar Reactivo</button>
+
+  <hr />
+
+  <!-- Lista de reactivos preagregados -->
+  <h3>Reactivos Preagregados</h3>
+  <div *ngIf="reactivosPreagregados.length; else noReactivos">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let reactivo of reactivosPreagregados; index as i">
+        <strong>{{ i + 1 }}.</strong> {{ reactivo.pregunta }}
+        <button class="btn btn-danger btn-sm float-end" (click)="eliminarReactivo(i)">
+          Eliminar
+        </button>
+      </li>
+    </ul>
+  </div>
+  <ng-template #noReactivos>
+    <p>No hay reactivos preagregados.</p>
+  </ng-template>
+
+  <hr />
+
+  <!-- Botón para guardar el cuestionario y reactivos -->
+  <button class="btn btn-success" (click)="guardarCuestionarioYReactivos()">Guardar Cuestionario</button>
+</div>

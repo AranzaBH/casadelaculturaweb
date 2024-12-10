@@ -1,59 +1,113 @@
-import { Component, OnInit } from '@angular/core';
-import { CuestionarioService, Cuestionario } from '../../../services/cuestionario.service';
+import { Component } from '@angular/core';
+import { CuestionarioService, Cuestionario, Reactivo } from '../../../services/cuestionario.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-cuestionario',
   templateUrl: './cuestionario.component.html',
-  styleUrls: ['./cuestionario.component.css']
+  styleUrls: ['./cuestionario.component.css'],
 })
-export class CuestionarioComponent implements OnInit {
-  cuestionarios: Cuestionario[] = [];
-  nuevoCuestionario: Cuestionario = { idCuestionario: 0, calificacion: '' };
-  errorMessage: string | null = null;
+export class CuestionarioComponent {
+  cuestionario: Cuestionario = {
+    nombreCuestionario: '',
+    instrucciones: '',
+    calificacion: 0,
+  };
+
+  nuevoReactivo: Partial<Reactivo> = {
+    pregunta: '',
+    respuestaCorrecta: '',
+    respuesta1: '',
+    respuesta2: '',
+    respuesta3: '',
+    respuesta4: '',
+    respuesta5: '',
+  };
+
+  reactivosPreagregados: Partial<Reactivo>[] = [];
 
   constructor(private cuestionarioService: CuestionarioService) {}
 
-  ngOnInit(): void {
-    this.cargarCuestionarios();
+  // Preagregar un reactivo temporalmente
+  preagregarReactivo(): void {
+    if (!this.nuevoReactivo.pregunta || !this.nuevoReactivo.respuestaCorrecta) {
+      console.error('Debes completar la pregunta y la respuesta correcta.');
+      return;
+    }
+
+    this.reactivosPreagregados.push({ ...this.nuevoReactivo });
+    this.nuevoReactivo = {
+      pregunta: '',
+      respuestaCorrecta: '',
+      respuesta1: '',
+      respuesta2: '',
+      respuesta3: '',
+      respuesta4: '',
+      respuesta5: '',
+    };
   }
 
-  // Cargar todos los cuestionarios
-  cargarCuestionarios(): void {
-    this.cuestionarioService.obtenerTodosLosCuestionarios().subscribe(
-      (data: Cuestionario[]) => {
-        this.cuestionarios = data;
-      },
-      (error: any) => {
-        console.error('Error al cargar los cuestionarios:', error);
-        this.errorMessage = 'No se pudo cargar la lista de cuestionarios.';
-      }
-    );
+  // Eliminar un reactivo de la lista temporal
+  eliminarReactivo(index: number): void {
+    this.reactivosPreagregados.splice(index, 1);
   }
 
-  // Crear un nuevo cuestionario
-  agregarCuestionario(): void {
-    this.cuestionarioService.crearCuestionario(this.nuevoCuestionario).subscribe(
-      (cuestionario: Cuestionario) => {
-        this.cuestionarios.push(cuestionario);
-        this.nuevoCuestionario = { idCuestionario: 0, calificacion: '' }; // Resetear formulario
+  // Guardar el cuestionario y sus reactivos
+  guardarCuestionarioYReactivos(): void {
+    if (!this.cuestionario.nombreCuestionario || this.reactivosPreagregados.length === 0) {
+      console.error('El cuestionario debe tener un nombre y al menos un reactivo.');
+      return;
+    }
+
+    this.cuestionarioService.crearCuestionario(this.cuestionario).subscribe({
+      next: (cuestionarioCreado) => {
+        if (cuestionarioCreado.idCuestionario) {
+          this.guardarReactivos(cuestionarioCreado.idCuestionario);
+        } else {
+          console.error('No se recibió un ID válido para el cuestionario.');
+        }
       },
-      (error: any) => {
-        console.error('Error al crear el cuestionario:', error);
-      }
-    );
+      error: (err) => {
+        console.error('Error al crear el cuestionario:', err);
+      },
+    });
   }
 
-  // Eliminar un cuestionario
-  eliminarCuestionario(idCuestionario: number): void {
-    this.cuestionarioService.eliminarCuestionario(idCuestionario).subscribe(
-      () => {
-        this.cuestionarios = this.cuestionarios.filter(
-          (c) => c.idCuestionario !== idCuestionario
-        );
-      },
-      (error: any) => {
-        console.error('Error al eliminar el cuestionario:', error);
-      }
+  // Guardar todos los reactivos asociados al cuestionario
+  private guardarReactivos(idCuestionario: number): void {
+    const reactivosConId = this.reactivosPreagregados.map((reactivo) => ({
+      ...reactivo,
+      cuestionario: { idCuestionario },
+    }));
+
+    const peticiones = reactivosConId.map((reactivo) =>
+      this.cuestionarioService.crearReactivo(reactivo as Reactivo)
     );
+
+    forkJoin(peticiones).subscribe({
+      next: (resultados) => {
+        console.log('Todos los reactivos se guardaron correctamente:', resultados);
+        this.reiniciarFormulario();
+      },
+      error: (err) => {
+        console.error('Error al guardar uno o más reactivos:', err);
+      },
+    });
+  }
+
+  // Reiniciar el formulario y los reactivos
+  private reiniciarFormulario(): void {
+    this.cuestionario = { nombreCuestionario: '', instrucciones: '', calificacion: 0 };
+    this.reactivosPreagregados = [];
+    this.nuevoReactivo = {
+      pregunta: '',
+      respuestaCorrecta: '',
+      respuesta1: '',
+      respuesta2: '',
+      respuesta3: '',
+      respuesta4: '',
+      respuesta5: '',
+    };
+    console.log('Formulario reiniciado.');
   }
 }

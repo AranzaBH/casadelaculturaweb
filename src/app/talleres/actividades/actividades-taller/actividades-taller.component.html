@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Actividades por Taller</h2>
+  
+    <div>
+      <label for="taller">Selecciona un Taller:</label>
+      <select
+        id="taller"
+        [(ngModel)]="tallerSeleccionado"
+        (change)="cargarActividades()"
+      >
+        <option *ngFor="let taller of talleres" [value]="taller.idTaller">
+          {{ taller.tituloTaller }}
+        </option>
+      </select>
+    </div>
+  
+    <div *ngIf="actividades.length > 0">
+      <h3>Actividades</h3>
+      <ul>
+        <li *ngFor="let actividad of actividades">
+          {{ actividad.nombreActividad }}
+          <!-- Botón para ver detalles -->
+          <button (click)="verDetalles(actividad.idActividades)">Ver detalles</button>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="actividades.length === 0 && tallerSeleccionado">
+      <p>No hay actividades para este taller.</p>
+    </div>
+  </div>
+  

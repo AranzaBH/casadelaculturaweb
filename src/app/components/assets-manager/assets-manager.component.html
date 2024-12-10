@@ -1,0 +1,36 @@
+<div class="container mt-4">
+    <h2 class="text-center">Gestión de Imágenes</h2>
+  
+    <!-- Seleccionar archivo -->
+    <div class="form-group">
+      <label for="fileInput">Seleccionar imagen:</label>
+      <input
+        type="file"
+        id="fileInput"
+        class="form-control"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+  
+    <!-- Botón de carga -->
+    <button
+      class="btn btn-primary mt-2"
+      (click)="uploadFile()"
+      [disabled]="loading || !fileToUpload"
+    >
+      {{ loading ? 'Subiendo...' : 'Subir Imagen' }}
+    </button>
+  
+    <!-- Vista previa de la imagen cargada -->
+    <div *ngIf="imageUrl" class="mt-4">
+      <h4>Imagen Cargada:</h4>
+      <img [src]="imageUrl" alt="Imagen subida" class="img-thumbnail" />
+      <button class="btn btn-danger mt-2" (click)="deleteFile()">Eliminar Imagen</button>
+    </div>
+  
+    <!-- Mensajes de error -->
+    <div *ngIf="errorMessage" class="alert alert-danger mt-2">
+      {{ errorMessage }}
+    </div>
+  </div>
+  

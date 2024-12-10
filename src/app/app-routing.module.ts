@@ -13,8 +13,14 @@ import { TallerComponent } from './talleres/taller/taller.component';
 import { TallerDetailsComponent } from './talleres/taller-details/taller-details.component'; // Asegúrate de que tienes este componente
 import { TalleresUserComponent } from './../app/pages/user/talleres-user/talleres-user.component';
 import { ReactivoComponent } from './talleres/actividades/reactivo/reactivo.component';
-import { PreguntasComponent } from './talleres/actividades/preguntas/preguntas.component';
+
 import { CuestionarioComponent } from './talleres/actividades/cuestionario/cuestionario.component';
+import { CuestionarioUserComponent } from './pages/user/actividades/actividad/cuestionario-user/cuestionario-user.component';
+import { VideoComponent } from './talleres/actividades/video/video.component';
+import { CrearActividadComponent } from './talleres/actividades/crear-actividad/crear-actividad.component';
+import { ActividadesTallerComponent } from './talleres/actividades/actividades-taller/actividades-taller.component';
+import { ImagenesComponent } from './components/imagenes/imagenes.component';
+import { ActividadesDetallesComponent } from './talleres/actividades/actividades-detalles/actividades-detalles.component';
 
 const routes: Routes = [
   
@@ -98,10 +104,38 @@ const routes: Routes = [
       canActivate: [AdminGuard]
     },
     {
-    path: 'admin/preguntas',
-      component: PreguntasComponent,
-      canActivate: [AdminGuard]
-    },
+      path: 'admin/cuestionario-user',
+        component: CuestionarioUserComponent,
+        canActivate: [AdminGuard]
+      },
+      {
+        path: 'admin/videos',
+          component: VideoComponent,
+          canActivate: [AdminGuard]
+        },
+        {
+          path: 'admin/actividad',
+            component: CrearActividadComponent,
+            canActivate: [AdminGuard]
+          },
+          {
+          
+          path: 'admin/imagenes',
+            component: ImagenesComponent,
+            canActivate: [AdminGuard]
+          },
+          {
+          
+            path: 'admin/actividad_taller',
+              component: ActividadesTallerComponent,
+              canActivate: [AdminGuard]
+            },
+
+
+            { path: '', component: ActividadesDetallesComponent },  // Componente para la lista de actividades
+  { path: 'admin/actividades_detalles/:id', component: ActividadesDetallesComponent },
+    
+    
   ];
   
   

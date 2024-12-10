@@ -1,1 +1,52 @@
-<p>video works!</p>
+<div class="container">
+  <h2>Crear Nuevo Video</h2>
+
+  <!-- Formulario para agregar video -->
+  <form (ngSubmit)="guardarVideo()">
+    <!-- Campo para el Título -->
+    <div class="form-group">
+      <label for="titulo">Título del Video</label>
+      <input
+        type="text"
+        id="titulo"
+        [(ngModel)]="nuevoVideo.titulo"
+        name="titulo"
+        class="form-control"
+        placeholder="Ingresa el título"
+        required
+      />
+    </div>
+
+    <!-- Campo para la URL -->
+    <div class="form-group">
+      <label for="urlVideo">URL del Video</label>
+      <input
+        type="url"
+        id="urlVideo"
+        [(ngModel)]="nuevoVideo.urlVideo"
+        name="urlVideo"
+        class="form-control"
+        placeholder="Ingresa la URL del video"
+        required
+      />
+    </div>
+
+    <!-- Botón de Guardar -->
+    <button type="submit" class="btn btn-primary">Guardar Video</button>
+  </form>
+
+  <!-- Mensaje de éxito o error -->
+  <div *ngIf="mensaje" class="alert alert-info mt-3">
+    {{ mensaje }}
+  </div>
+
+  <!-- Lista desplegable de videos guardados -->
+  <div class="mt-4">
+    <h3>Videos Guardados</h3>
+    <select class="form-select" size="5">
+      <option *ngFor="let video of videosGuardados" [value]="video.idVideo">
+        {{ video.idVideo }} - {{ video.titulo }} ({{ video.urlVideo }})
+      </option>
+    </select>
+  </div>
+</div>

@@ -35,12 +35,20 @@ import { TallerDetailsComponent } from './talleres/taller-details/taller-details
 
 import { InscripcionService } from './services/inscripcion.service';
 import { TalleresUserComponent } from './pages/user/talleres-user/talleres-user.component';
-
 import { ReactivoComponent } from './talleres/actividades/reactivo/reactivo.component';
-import { PreguntasComponent } from './talleres/actividades/preguntas/preguntas.component';
 import { CuestionarioComponent } from './talleres/actividades/cuestionario/cuestionario.component';
-import { VideoComponent } from './talleres/actividades/video/video.component';
 
+import { ActualizacionComponent } from './pages/profile/actualizacion/actualizacion.component';
+import { CuestionarioUserComponent } from './pages/user/actividades/actividad/cuestionario-user/cuestionario-user.component';
+import { CrearActividadComponent } from './talleres/actividades/crear-actividad/crear-actividad.component';
+import { VideoComponent } from './talleres/actividades/video/video.component';
+import { AssetsManagerComponent } from './components/assets-manager/assets-manager.component';
+import { ImagenesComponent } from './components/imagenes/imagenes.component';
+
+import { ActividadesTallerComponent } from './talleres/actividades/actividades-taller/actividades-taller.component';
+import { ActividadesDetallesComponent } from './talleres/actividades/actividades-detalles/actividades-detalles.component';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { YouTubePlayerModule } from "@angular/youtube-player";
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,11 +65,19 @@ import { VideoComponent } from './talleres/actividades/video/video.component';
     TallerComponent,
     TallerDetailsComponent,
     TalleresUserComponent,
-    
     ReactivoComponent,
-    PreguntasComponent,
     CuestionarioComponent,
-    VideoComponent
+    VideoComponent,
+    ActualizacionComponent,
+    CuestionarioUserComponent,
+    CrearActividadComponent,
+    AssetsManagerComponent,
+    ImagenesComponent,
+    ActividadesTallerComponent,
+    ActividadesDetallesComponent,
+    SafeUrlPipe
+    
+
     
   ],
   imports: [
@@ -78,7 +94,8 @@ import { VideoComponent } from './talleres/actividades/video/video.component';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    ReactiveFormsModule   
+    ReactiveFormsModule,
+    YouTubePlayerModule,   
   ],
   providers: [authInterceptorProviders, AuthService, InscripcionService],
   bootstrap: [AppComponent],

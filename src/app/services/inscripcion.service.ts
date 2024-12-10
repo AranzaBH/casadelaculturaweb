@@ -34,4 +34,9 @@ export class InscripcionService {
   eliminarInscripcion(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+  // Obtener inscripciones por usuario (Corregido)
+  obtenerInscripcionesPorUsuario(idUsuario: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/usuario/${idUsuario}`);
+  }
 }

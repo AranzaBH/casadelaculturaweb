@@ -1,0 +1,36 @@
+<div class="container">
+    <h2>{{ actividad?.nombreActividad }}</h2>
+  
+    <!-- Mostrar el video -->
+    <div *ngIf="videoId">
+      <h3>Video</h3>
+      <div id="youtube-player-container" #demoYouTubePlayer class="demo-youtube-player">
+        <youtube-player 
+          [videoId]="videoId" 
+          [width]="videoWidth" 
+          [height]="videoHeight"
+          suggestedQuality="highres">
+        </youtube-player>
+      </div>
+    </div>
+  
+    <!-- Mostrar el cuestionario -->
+    <div *ngIf="cuestionario">
+      <h3>Cuestionario: {{ cuestionario.nombreCuestionario }}</h3>
+      <p>{{ cuestionario.instrucciones }}</p>
+  
+      <div *ngFor="let pregunta of reactivos">
+        <p>{{ pregunta.pregunta }}</p>
+        <div *ngFor="let opcion of ['respuesta1', 'respuesta2', 'respuesta3', 'respuesta4', 'respuesta5']">
+          <input type="radio" [name]="pregunta.idReactivo" [value]="pregunta[opcion]" />
+          {{ pregunta[opcion] }}
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mostrar mensaje si no hay video o cuestionario -->
+    <div *ngIf="!video && !cuestionario">
+      <p>No hay video o cuestionario asignado a esta actividad.</p>
+    </div>
+  </div>
+  

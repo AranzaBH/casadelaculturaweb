@@ -1,0 +1,72 @@
+/* Ajusta el margen superior del contenedor de la página */
+.content {
+    margin-top: 100px; /* Aumenta el margen superior para mover el contenido hacia abajo */
+    margin-left: 170px; /* Evitar que el contenido se superponga con la imagen izquierda */
+    margin-right: 170px; /* Evitar que el contenido se superponga con la imagen derecha */
+    padding: 20px;
+  }
+  
+  /* Título */
+  h3.text-center {
+    margin-top: 40px; /* Ajusta el margen superior del título */
+  }
+  
+  /* Otras reglas de estilo de la tarjeta */
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para las tarjetas */
+    border-radius: 8px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  /* Estilo de las imágenes dentro de la tarjeta */
+  .responsive-image {
+    width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: auto; /* Mantiene la relación de aspecto */
+  }
+  
+  /* Botones */
+  .card-footer .btn {
+    width: 100%; /* Hace que los botones ocupen todo el ancho de la tarjeta */
+    margin-top: 10px;
+  }
+  
+  /* Ajustar la separación entre tarjetas */
+  .row .col-md-4 {
+    margin-bottom: 20px; /* Separa las tarjetas con espacio en la parte inferior */
+  }
+  
+  /* Asegúrate de que las imágenes laterales no cubran el contenido */
+  .left-image, .right-image {
+    position: fixed;
+    top: 0;
+    width: 150px; /* Ajusta el tamaño de las imágenes */
+    height: 100%;
+    object-fit: cover;
+    z-index: 500; /* Asegúrate de que las imágenes no cubran el contenido */
+  }
+  
+  .left-image {
+    left: 0;
+  }
+  
+  .right-image {
+    right: 0;
+  }
+  
+  /* Evita que el contenido se superponga con el menú */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  

@@ -1,0 +1,53 @@
+<div class="container mt-4 d-flex justify-content-center">
+  <div class="col-md-8">
+    <h2 class="text-center mb-4">Cuestionarios</h2>
+
+    <div class="seleccionar-cuestionario mb-4">
+      <label for="cuestionarios">Selecciona un cuestionario:</label>
+      <select id="cuestionarios" (change)="onSeleccionarCuestionario($event)" class="form-control">
+        <option value="">--Selecciona un cuestionario--</option>
+        <option *ngFor="let cuestionario of cuestionarios" [value]="cuestionario.idCuestionario">
+          {{ cuestionario.nombreCuestionario }}
+        </option>
+      </select>
+    </div>
+
+    <div *ngIf="idCuestionario && reactivos.length > 0; else noReactivos">
+      <h3 class="text-center mb-4">Cuestionario: {{ nombreCuestionario }}</h3>
+      
+      <div *ngFor="let reactivo of reactivos; let i = index" class="pregunta mb-3">
+        <p><strong>{{ reactivo.pregunta }}</strong></p>
+        
+        <div class="opciones">
+          <div *ngFor="let opcion of obtenerOpciones(reactivo)" class="form-check">
+            <input
+              type="radio"
+              class="form-check-input"
+              [name]="'reactivo' + i"
+              [value]="opcion"
+              (change)="registrarRespuesta(i, opcion)"
+              [checked]="respuestas[i] === opcion"
+            />
+            <label class="form-check-label">
+              {{ opcion }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón para calcular el puntaje -->
+      <div class="text-center mt-4">
+        <button class="btn btn-primary" (click)="calcularPuntaje()">Calcular Puntaje</button>
+      </div>
+
+      <!-- Mostrar el puntaje -->
+      <div *ngIf="puntaje !== null" class="text-center mt-3">
+        <p><strong>Puntaje: {{ puntaje }} de {{ reactivos.length }}</strong></p>
+      </div>
+    </div>
+
+    <ng-template #noReactivos>
+      <p class="text-center">No se encontraron reactivos para este cuestionario.</p>
+    </ng-template>
+  </div>
+</div>

@@ -1,61 +1,79 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactivoService, Reactivo } from '../../../services/reactivo.service';
+import { Reactivo, ReactivoService } from 'src/app/services/reactivo.service';
 
 @Component({
   selector: 'app-reactivo',
   templateUrl: './reactivo.component.html',
-  styleUrls: ['./reactivo.component.css']
+  styleUrls: ['./reactivo.component.css'],
 })
 export class ReactivoComponent implements OnInit {
-  reactivos: Reactivo[] = [];
-  nuevoReactivo: Reactivo = {
-    id: 0,
+  reactivos: Reactivo[] = []; // Reactivos existentes en la base de datos
+  preactivos: Reactivo[] = []; // Reactivos temporales
+  newReactivo: Reactivo = {
     pregunta: '',
     respuestaCorrecta: '',
     respuesta1: '',
     respuesta2: '',
     respuesta3: '',
-    respuesta4: '',
-    respuesta5: ''
+    respuesta4: null,
+    respuesta5: null,
+    cuestionario: { idCuestionario: 0 },
   };
 
   constructor(private reactivoService: ReactivoService) {}
 
   ngOnInit(): void {
-    this.cargarReactivos();
+    this.getReactivos();
   }
 
-  cargarReactivos(): void {
-    this.reactivoService.obtenerTodosLosReactivos().subscribe(
-      (data: Reactivo[]) => {
-        this.reactivos = data;
-      },
-      (error: any) => {
-        console.error('Error al obtener los reactivos:', error);
-      }
-    );
+  // Obtener los reactivos de la base de datos
+  getReactivos(): void {
+    this.reactivoService.getReactivos().subscribe((data) => {
+      this.reactivos = data;
+    });
   }
 
-  agregarReactivo(): void {
-    this.reactivoService.crearReactivo(this.nuevoReactivo).subscribe(
-      (reactivo: Reactivo) => {
-        this.reactivos.push(reactivo); // Agregar el nuevo reactivo a la lista
-        this.nuevoReactivo = { id: 0, pregunta: '', respuestaCorrecta: '', respuesta1: '', respuesta2: '', respuesta3: '', respuesta4: '', respuesta5: '' }; // Resetear el formulario
-      },
-      (error: any) => {
-        console.error('Error al agregar el reactivo:', error);
-      }
-    );
+  // Añadir un reactivo a la lista temporal
+  addPreReactivo(): void {
+    if (this.newReactivo.cuestionario.idCuestionario > 0) {
+      this.preactivos.push({ ...this.newReactivo }); // Agrega una copia del reactivo actual
+      this.resetForm();
+    } else {
+      alert('Por favor, ingrese un ID de cuestionario válido.');
+    }
   }
 
-  eliminarReactivo(id: number): void {
-    this.reactivoService.eliminarReactivo(id).subscribe(
-      () => {
-        this.reactivos = this.reactivos.filter((r) => r.id !== id);
-      },
-      (error: any) => {
-        console.error('Error al eliminar el reactivo:', error);
-      }
-    );
+  // Enviar los preactivos a la base de datos
+  savePreReactivos(): void {
+    if (this.preactivos.length > 0) {
+      this.preactivos.forEach((preactivo) => {
+        this.reactivoService.createReactivo(preactivo).subscribe((data) => {
+          this.reactivos.push(data); // Agrega el reactivo guardado a la lista de reactivos reales
+        });
+      });
+      this.preactivos = []; // Limpia la lista de preactivos después de guardar
+      alert('Todos los preactivos se han guardado en la base de datos.');
+    } else {
+      alert('No hay preactivos para guardar.');
+    }
+  }
+
+  // Eliminar un reactivo temporal de la lista de preactivos
+  deletePreReactivo(index: number): void {
+    this.preactivos.splice(index, 1); // Elimina el preactivo por índice
+  }
+
+  // Limpiar el formulario
+  resetForm(): void {
+    this.newReactivo = {
+      pregunta: '',
+      respuestaCorrecta: '',
+      respuesta1: '',
+      respuesta2: '',
+      respuesta3: '',
+      respuesta4: null,
+      respuesta5: null,
+      cuestionario: { idCuestionario: 0 },
+    };
   }
 }
