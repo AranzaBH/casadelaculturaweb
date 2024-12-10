@@ -5,12 +5,14 @@
     <div *ngIf="videoId">
       <h3>Video</h3>
       <div id="youtube-player-container" #demoYouTubePlayer class="demo-youtube-player">
-        <youtube-player 
-          [videoId]="videoId" 
-          [width]="videoWidth" 
-          [height]="videoHeight"
-          suggestedQuality="highres">
-        </youtube-player>
+        <iframe
+  width="560"
+  height="315"
+  [src]="'https://www.youtube.com/embed/' + videoId"
+  frameborder="0"
+  allowfullscreen
+></iframe>
+
       </div>
     </div>
   

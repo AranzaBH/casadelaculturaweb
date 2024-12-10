@@ -48,7 +48,7 @@ import { ImagenesComponent } from './components/imagenes/imagenes.component';
 import { ActividadesTallerComponent } from './talleres/actividades/actividades-taller/actividades-taller.component';
 import { ActividadesDetallesComponent } from './talleres/actividades/actividades-detalles/actividades-detalles.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
-import { YouTubePlayerModule } from "@angular/youtube-player";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +95,7 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
     MatIconModule,
     MatListModule,
     ReactiveFormsModule,
-    YouTubePlayerModule,   
+       
   ],
   providers: [authInterceptorProviders, AuthService, InscripcionService],
   bootstrap: [AppComponent],
