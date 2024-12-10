@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { LoginService } from './../../services/login.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TipoTallerService } from './../../services/tipo-taller.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import Swal from 'sweetalert2';
 import { TallerService } from './../../services/taller.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
