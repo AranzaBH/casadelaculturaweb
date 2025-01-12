@@ -21,9 +21,10 @@ import { CrearActividadComponent } from './talleres/actividades/crear-actividad/
 import { ActividadesTallerComponent } from './talleres/actividades/actividades-taller/actividades-taller.component';
 import { ImagenesComponent } from './components/imagenes/imagenes.component';
 import { ActividadesDetallesComponent } from './talleres/actividades/actividades-detalles/actividades-detalles.component';
+import { TipoTallerComponent } from './talleres/tipo-taller/tipo-taller.component';
 
 const routes: Routes = [
-  
+
   {
     path: 'signup',
     component: SignupComponent,
@@ -38,7 +39,7 @@ const routes: Routes = [
     path: 'admin/dash',
     component: DashboardComponent,
     pathMatch: 'full',
-    canActivate: [AdminGuard],
+    //canActivate: [AdminGuard],
     children: [
       {
         path: 'profile',
@@ -50,95 +51,101 @@ const routes: Routes = [
     path: 'user-dashboard',
     component: UserDashboardComponent,
     pathMatch: 'full',
-    canActivate: [NormalGuard]
-    
+    //canActivate: [NormalGuard]
+
   },
   {
     path: 'admin/profile',
     component: ProfileComponent,
-    canActivate: [AdminGuard]
+    //canActivate: [AdminGuard]
   },
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [NormalGuard]
+    //canActivate: [NormalGuard]
   },
-    
+
   {
     path: 'admin/crearT', // Nueva ruta para el componente de talleres
     component: CrearTallerComponent,
-    canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
-  
+    //canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
+
+  },
+  {
+    path: 'admin/tipoTaller', // Nueva ruta para el componente de talleres
+    component: TipoTallerComponent,
+    //canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
+
   },
   {
     path: 'admin/crearT', // Nueva ruta para el componente de tipo de talleres
     component: TallerComponent,
-    canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
-  
+    //canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
+
   },
   {
     path: 'admin/crearT/taller', // Nueva ruta para el componente de talleres
     component: TallerComponent,
-    canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
-  
+    //canActivate: [AdminGuard] // Usando NormalGuard para usuarios normales
+
   },
   //talleres
   { path: '', component: UserDashboardComponent },
-  
+
   { path: 'taller/:id', component: TallerDetailsComponent },
 
-  
+
   {
     path: 'inscripcion',
     component: TalleresUserComponent,
-    canActivate: [NormalGuard]
+    //canActivate: [NormalGuard]
   },
   {
   path: 'admin/reactivo',
     component: ReactivoComponent,
-    canActivate: [AdminGuard]
+    //canActivate: [AdminGuard]
   },
   {
     path: 'admin/cuestionario',
       component: CuestionarioComponent,
-      canActivate: [AdminGuard]
+      //canActivate: [AdminGuard]
     },
     {
       path: 'admin/cuestionario-user',
         component: CuestionarioUserComponent,
-        canActivate: [AdminGuard]
+        //canActivate: [AdminGuard]
       },
       {
         path: 'admin/videos',
           component: VideoComponent,
-          canActivate: [AdminGuard]
+          //canActivate: [AdminGuard]
         },
         {
           path: 'admin/actividad',
             component: CrearActividadComponent,
-            canActivate: [AdminGuard]
+            //canActivate: [AdminGuard]
           },
           {
-          
+
           path: 'admin/imagenes',
             component: ImagenesComponent,
-            canActivate: [AdminGuard]
+            //canActivate: [AdminGuard]
           },
           {
-          
+
             path: 'admin/actividad_taller',
               component: ActividadesTallerComponent,
-              canActivate: [AdminGuard]
+              //canActivate: [AdminGuard]
             },
 
 
             { path: '', component: ActividadesDetallesComponent },  // Componente para la lista de actividades
   { path: 'admin/actividades_detalles/:id', component: ActividadesDetallesComponent },
-    
-    
+
+
   ];
-  
-  
+
+
 
 
 @NgModule({

@@ -48,7 +48,13 @@ import { ImagenesComponent } from './components/imagenes/imagenes.component';
 import { ActividadesTallerComponent } from './talleres/actividades/actividades-taller/actividades-taller.component';
 import { ActividadesDetallesComponent } from './talleres/actividades/actividades-detalles/actividades-detalles.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
-
+import { TipoTallerComponent } from './talleres/tipo-taller/tipo-taller.component';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+import { TipoTallerFormComponent } from './talleres/tipo-taller/tipo-taller-form.component';
+import { DialogModule } from 'primeng/dialog';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +66,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     UserDashboardComponent,
     SidebarComponent,
     ProfileComponent,
-    WelcomeComponent,   
+    WelcomeComponent,
     CrearTallerComponent,
     TallerComponent,
     TallerDetailsComponent,
@@ -75,10 +81,11 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     ImagenesComponent,
     ActividadesTallerComponent,
     ActividadesDetallesComponent,
-    SafeUrlPipe
-    
+    SafeUrlPipe,
+    TipoTallerComponent,
+    TipoTallerFormComponent
 
-    
+
   ],
   imports: [
     BrowserModule,
@@ -95,10 +102,15 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     MatIconModule,
     MatListModule,
     ReactiveFormsModule,
-       
+    TableModule,
+    PaginatorModule,
+    DialogModule,
+    ToastModule
+
+
   ],
-  providers: [authInterceptorProviders, AuthService, InscripcionService],
+  providers: [authInterceptorProviders, AuthService, InscripcionService,MessageService],
   bootstrap: [AppComponent],
-  
+
 })
 export class AppModule { }
